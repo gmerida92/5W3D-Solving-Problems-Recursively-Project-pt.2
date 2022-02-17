@@ -12,11 +12,26 @@ addToTwelve([1, 12, 4, 7, 6]); // false
 addToTwelve([1]); // false
 ***********************************************************************/
 
+debugger
 
 function addToTwelve(arr) {
-  // Your code here
+  if (arr.length === 0) return false;
+  else if (arr.length === 2 && (12 - arr[0] !== arr[1])) return false;
+  else if (addToTwelveHelper(arr, arr[0])) return true;
+  return addToTwelve(arr.slice(1));
 }
 
+function addToTwelveHelper(arr, currentOuterNum) {
+  if (12 - arr[0] === currentOuterNum) return true;
+  else if (arr.length === 0) return false;
+  return addToTwelveHelper(arr.slice(1), currentOuterNum)
+}
+
+addToTwelve([1, 3, 4, 7, 5]); // true
+addToTwelve([1, 3, 4, 7, 6]); // false
+addToTwelve([1, 11, 4, 7, 6]); // true
+addToTwelve([1, 12, 4, 7, 6]); // false
+addToTwelve([1]); // false
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
